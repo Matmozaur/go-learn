@@ -1,0 +1,27 @@
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+var once sync.Once
+
+type singleTwo struct {
+}
+
+var singleInstanceTwo *singleTwo
+
+func getInstance() *singleTwo {
+	if singleInstanceTwo == nil {
+		once.Do(
+			func() {
+				fmt.Println("Creating singleTwo instance now.")
+				singleInstanceTwo = &singleTwo{}
+			})
+	} else {
+		fmt.Println("Single2 instance already created.")
+	}
+
+	return singleInstanceTwo
+}
