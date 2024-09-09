@@ -87,4 +87,6 @@ func main() {
 	for pair := charFrequencySorted.Oldest(); pair != nil; pair = pair.Next() {
 		fmt.Printf("%s: %f\n", pair.Key, pair.Value)
 	}
+
+	fmt.Println(charFrequency[-1])
 }
