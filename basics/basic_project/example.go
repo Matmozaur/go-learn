@@ -1,4 +1,4 @@
-package rtb
+package example
 
 import "fmt"
 
