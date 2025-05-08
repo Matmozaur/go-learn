@@ -30,6 +30,11 @@ func (l *Location) Move(lat, lng float64) {
 	l.Lng = lng
 }
 
+func (l Location) MoveValue(lat, lng float64) {
+	l.Lat = lat
+	l.Lng = lng
+}
+
 // Embeddings
 type Car struct {
 	ID string
@@ -64,6 +69,8 @@ func moveAll(items []Mover, lat, lng float64) {
 func Add[T int | float64 | string](a, b T) T {
 	return a + b
 }
+
+// -----------------------------------------------------------------
 
 // challenge
 const PerHour = 5.0
@@ -120,6 +127,8 @@ func main() {
 
 	loc.Move(0, 0)
 	fmt.Printf("%#v\n", loc)
+	loc.MoveValue(1, 1)
+	fmt.Printf("%#v\n", loc)
 	fmt.Println("------------------")
 
 	car, err := NewCar("g0ph3r", 32.5253837, 34.9427434)
@@ -153,17 +162,30 @@ func main() {
 	fmt.Println(Add("G", "o"))
 	fmt.Println("------------------")
 
+	// -----------------------------------------------------------------
+
 	vms := []Costable{
 		&VM{
 			startTime: time.Date(2022, time.April, 12, 17, 30, 0, 0, time.UTC),
 			endTime:   time.Date(2022, time.April, 12, 19, 54, 0, 0, time.UTC),
 		},
+		&Spot{
+			VM: VM{
+				startTime: time.Date(2022, time.April, 13, 9, 46, 0, 0, time.UTC),
+				endTime:   time.Date(2022, time.April, 15, 12, 7, 0, 0, time.UTC),
+			},
+		},
+
 		Spot{
 			VM: VM{
 				startTime: time.Date(2022, time.April, 13, 9, 46, 0, 0, time.UTC),
 				endTime:   time.Date(2022, time.April, 15, 12, 7, 0, 0, time.UTC),
 			},
 		},
+		// VM{
+		// 	startTime: time.Date(2022, time.April, 12, 17, 30, 0, 0, time.UTC),
+		// 	endTime:   time.Date(2022, time.April, 12, 19, 54, 0, 0, time.UTC),
+		// },
 	}
 	fmt.Println(TotalCost(vms))
 
