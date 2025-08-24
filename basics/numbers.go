@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/cmplx"
 	"sort"
 )
 
@@ -27,4 +28,9 @@ func main() {
 		median = (nums[i-1] + nums[i]) / 2
 	}
 	fmt.Println(median)
+
+	var x complex128
+	x = 3 + 4i
+	fmt.Println(cmplx.Abs(x))
+
 }
